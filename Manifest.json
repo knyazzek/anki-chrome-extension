@@ -1,0 +1,18 @@
+{
+  "manifest_version": 3,
+  "name": "Anki automation tool",
+  "description": "DESCRIPTION",
+  "version": "1.0",
+  "action": {
+    "default_icon": "icon.png",
+    "default_popup": "index.html"
+  },
+  "permissions": ["activeTab", "clipboardWrite"],
+  "content_scripts": [
+    {
+      "matches": ["https://dictionary.cambridge.org/dictionary/english/*"],
+      "css": ["style.css"],
+      "js": ["script.js"]
+    }
+  ]
+}

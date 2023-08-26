@@ -1,0 +1,9 @@
+#ad_unit {
+    display: none;
+}
+
+.copyAudioButton {
+    background-color: transparent;
+    border: 0;
+    font-size: 120%
+}
