@@ -1,4 +1,4 @@
-function addCopyToClipboardButton(audioElement) {
+function addCopyMp3ToClipboardButton(audioElement) {
     const mp3Source = audioElement.getElementsByTagName("source")[0];
     const mp3Url =  "https://dictionary.cambridge.org/" + mp3Source.getAttribute("src");
 
@@ -22,4 +22,4 @@ function addCopyToClipboardButton(audioElement) {
 }
 
 const audioElements = document.getElementsByTagName("audio");
-Array.from(audioElements).forEach(addCopyToClipboardButton);
+Array.from(audioElements).forEach(addCopyMp3ToClipboardButton);
