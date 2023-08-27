@@ -1,56 +1,58 @@
-function addCopyToClipboardForButton(button, textToCopy) {
-    button.addEventListener("click", function() {
-        // Copy text to clipboard
-        navigator.clipboard.writeText(textToCopy).then(function() {
-            console.log("Text successfully copied");
-        }).catch(function(err) {
-            console.log("Unable to copy text", err);
-        });
-    });
+function getElementsTextWithoutATags(element) {
+    let text = "";
+
+    // Loop through all child nodes of the current element
+    for (let child of element.childNodes) {
+        if (child.nodeType === 3) { // Text node
+            text += child.nodeValue;
+        } else if (child.nodeType === 1) { // Element node
+            text += getElementsTextWithoutATags(child);
+        }
+    }
+
+    return text;
 }
 
 
-
-//Add copy mp3 to clipboard button
-
-function addCopyMp3ToClipboardButton(audioElement) {
-    const mp3Source = audioElement.getElementsByTagName("source")[0];
-    const mp3Url =  "https://dictionary.cambridge.org/" + mp3Source.getAttribute("src");
-
-    const playButton = audioElement.parentElement
-
+function addCopyButton(textToCopy, parentElement) {
     const copyButton = document.createElement("button");
     copyButton.classList.add("copyButton");
     copyButton.innerHTML = "&#10064;";
 
-    addCopyToClipboardForButton(copyButton, mp3Url)
-    playButton.insertAdjacentElement("afterbegin", copyButton)
+    copyButton.addEventListener("click", function() {
+        // Copy text to clipboard
+        navigator.clipboard.writeText(textToCopy).then(function() {
+            console.log("Text successfully copied");
+//            copyButton.innerHTML = "&#9745;";
+            copyButton.style.color = "#C0C0C0";
+        }).catch(function(err) {
+            console.log("Unable to copy text", err);
+        });
+    });
+
+    parentElement.insertAdjacentElement("afterbegin", copyButton)
+}
+
+
+//Add copy mp3 to clipboard
+function addCopyMp3ToClipboardButton(audioElement) {
+    const mp3Source = audioElement.getElementsByTagName("source")[0];
+    const mp3Url =  "https://dictionary.cambridge.org/" + mp3Source.getAttribute("src");
+
+    addCopyButton(mp3Url, audioElement.parentElement)
 }
 
 const audioElements = document.getElementsByTagName("audio");
 Array.from(audioElements).forEach(addCopyMp3ToClipboardButton);
 
 
-//Add copy definition to clipboard button
-
+//Add copy word's definition to clipboard
 function addCopyDefinitionToClipboardButton(definitionElement) {
-    const definitionContainerElement = definitionElement.parentElement
-
-    const copyButton = document.createElement("button");
-    copyButton.classList.add("copyButton");
-    copyButton.innerHTML = "&#10064;";
-
     let definitionText = '';
     let partOfSpeech = '';
 
     // Copy definition text
-    definitionElement.childNodes.forEach(node => {
-        if (node.nodeType === Node.TEXT_NODE) {
-            definitionText += node.textContent;
-        } else if (node.tagName === 'A') {
-            definitionText += node.textContent;
-        }
-    });
+    definitionText = getElementsTextWithoutATags(definitionElement)
 
     // Copy part of speech
     const workHeaderElement = definitionElement.closest(".pr.entry-body__el");
@@ -64,10 +66,18 @@ function addCopyDefinitionToClipboardButton(definitionElement) {
     }
 
     const clipboardText = definitionText + partOfSpeech
-
-    addCopyToClipboardForButton(copyButton, clipboardText)
-    definitionContainerElement.insertAdjacentElement("afterbegin", copyButton)
+    addCopyButton(clipboardText, definitionElement.parentElement)
 }
 
 const definitionElements = document.getElementsByClassName("def");
 Array.from(definitionElements).forEach(addCopyDefinitionToClipboardButton);
+
+function addCopyExampleToClipboardButton(exampleElement) {
+    exampleTextElement = exampleElement.getElementsByClassName("eg")[0]
+    exampleText = getElementsTextWithoutATags(exampleTextElement)
+
+    addCopyButton(exampleText, exampleElement)
+}
+
+const exampleElements = document.getElementsByClassName("examp");
+Array.from(exampleElements).forEach(addCopyExampleToClipboardButton);
