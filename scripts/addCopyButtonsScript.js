@@ -1,3 +1,16 @@
+function addCopyToClipboardForButton(button, textToCopy) {
+    button.addEventListener("click", function() {
+        // Copy text to clipboard
+        navigator.clipboard.writeText(textToCopy).then(function() {
+            console.log("Text successfully copied");
+        }).catch(function(err) {
+            console.log("Unable to copy text", err);
+        });
+    });
+}
+
+
+
 //Add copy mp3 to clipboard button
 
 function addCopyMp3ToClipboardButton(audioElement) {
@@ -10,16 +23,7 @@ function addCopyMp3ToClipboardButton(audioElement) {
     copyButton.classList.add("copyButton");
     copyButton.innerHTML = "&#10064;";
 
-    // Add click event listener
-    copyButton.addEventListener("click", function() {
-      // Copy text to clipboard
-      navigator.clipboard.writeText(mp3Url).then(function() {
-        console.log("Text successfully copied");
-      }).catch(function(err) {
-        console.log("Unable to copy text", err);
-      });
-    });
-
+    addCopyToClipboardForButton(copyButton, mp3Url)
     playButton.insertAdjacentElement("afterbegin", copyButton)
 }
 
@@ -61,16 +65,7 @@ function addCopyDefinitionToClipboardButton(definitionElement) {
 
     const clipboardText = definitionText + partOfSpeech
 
-    // Add click event listener
-    copyButton.addEventListener("click", function() {
-      // Copy text to clipboard
-      navigator.clipboard.writeText(clipboardText).then(function() {
-        console.log("Text successfully copied");
-      }).catch(function(err) {
-        console.log("Unable to copy text", err);
-      });
-    });
-
+    addCopyToClipboardForButton(copyButton, clipboardText)
     definitionContainerElement.insertAdjacentElement("afterbegin", copyButton)
 }
 
