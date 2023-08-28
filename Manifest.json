@@ -11,7 +11,7 @@
   "content_scripts": [
     {
       "matches": ["https://dictionary.cambridge.org/dictionary/english/*"],
-      "css": ["style.css"],
+      "css": ["styles/style.css"],
       "js": ["scripts/utils.js", "scripts/addCopyButtonsScript.js"]
     }
   ]
