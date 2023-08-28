@@ -39,7 +39,7 @@ function addCopyDefinitionToClipboardButton(definitionElement) {
     definitionText = getElementsTextWithoutTags(definitionElement)
 
     // Copy part of speech
-    const workHeaderElement = definitionElement.closest(".pr");
+    const workHeaderElement = definitionElement.closest(".entry-body");
     console.log(workHeaderElement)
     const partOfSpeechElement = workHeaderElement.querySelector(".pos.dpos");
     console.log(partOfSpeechElement)
