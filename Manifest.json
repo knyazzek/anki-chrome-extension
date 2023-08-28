@@ -12,7 +12,7 @@
     {
       "matches": ["https://dictionary.cambridge.org/dictionary/english/*"],
       "css": ["style.css"],
-      "js": ["scripts/addCopyButtonsScript.js"]
+      "js": ["scripts/utils.js", "scripts/addCopyButtonsScript.js"]
     }
   ]
 }

@@ -1,19 +1,3 @@
-function getElementsTextWithoutATags(element) {
-    let text = "";
-
-    // Loop through all child nodes of the current element
-    for (let child of element.childNodes) {
-        if (child.nodeType === 3) { // Text node
-            text += child.nodeValue;
-        } else if (child.nodeType === 1) { // Element node
-            text += getElementsTextWithoutATags(child);
-        }
-    }
-
-    return text;
-}
-
-
 function addCopyButton(textToCopy, parentElement) {
     const copyButton = document.createElement("button");
     copyButton.classList.add("copyButton");
@@ -52,7 +36,7 @@ function addCopyDefinitionToClipboardButton(definitionElement) {
     let partOfSpeech = '';
 
     // Copy definition text
-    definitionText = getElementsTextWithoutATags(definitionElement)
+    definitionText = getElementsTextWithoutTags(definitionElement)
 
     // Copy part of speech
     const workHeaderElement = definitionElement.closest(".pr");
@@ -74,7 +58,7 @@ Array.from(definitionElements).forEach(addCopyDefinitionToClipboardButton);
 
 function addCopyExampleToClipboardButton(exampleElement) {
     exampleTextElement = exampleElement.getElementsByClassName("eg")[0]
-    exampleText = getElementsTextWithoutATags(exampleTextElement)
+    exampleText = getElementsTextWithoutTags(exampleTextElement)
 
     addCopyButton(exampleText, exampleElement)
 }
