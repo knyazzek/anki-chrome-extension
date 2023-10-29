@@ -59,6 +59,8 @@ function addCopyDefinitionToClipboardButton(definitionElement) {
     }
 
     let clipboardText = wordDefinitionText + " " + wordType
+    
+    // Some definitions contain the word/phrase already
     if (!wordDefinitionText.includes(wordTitle)) {
         clipboardText = wordTitle + " - " + clipboardText
     }
