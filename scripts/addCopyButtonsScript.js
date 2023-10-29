@@ -32,13 +32,13 @@ Array.from(audioElements).forEach(addCopyMp3ToClipboardButton);
 
 // Add copy word's definition to clipboard
 function addCopyDefinitionToClipboardButton(definitionElement) {
-    let word = ''
+    let wordTitle = ''
     let wordDefinitionText = '';
     let wordType = '';
 
     // Copy word
     const wordRootElement = definitionElement.closest(".entry-body__el") || definitionElement.closest(".pr.idiom-block");
-    word = getElementsTextWithoutTags(wordRootElement.querySelector(".di-title"));
+    wordTitle = getElementsTextWithoutTags(wordRootElement.querySelector(".di-title"));
 
     // Copy word's definition
     wordDefinitionText = getElementsTextWithoutTags(definitionElement).trim();
@@ -59,8 +59,8 @@ function addCopyDefinitionToClipboardButton(definitionElement) {
     }
 
     let clipboardText = wordDefinitionText + " " + wordType
-    if (!wordDefinitionText.includes(word)) {
-        clipboardText = word + " - " + clipboardText
+    if (!wordDefinitionText.includes(wordTitle)) {
+        clipboardText = wordTitle + " - " + clipboardText
     }
 
     addCopyButton(clipboardText, definitionElement)
