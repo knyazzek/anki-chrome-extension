@@ -10,9 +10,15 @@
   "permissions": ["activeTab", "clipboardWrite"],
   "content_scripts": [
     {
-      "matches": ["https://dictionary.cambridge.org/dictionary/english/*"],
+      "matches": [
+        "https://dictionary.cambridge.org/dictionary/english/*", 
+        "https://dictionary.cambridge.org/us/dictionary/english/*"
+      ],
       "css": ["styles/style.css"],
-      "js": ["scripts/utils.js", "scripts/addCopyButtonsScript.js"]
+      "js": [
+        "scripts/utils.js", 
+        "scripts/addCopyButtonsScript.js"
+      ]
     }
   ]
 }
