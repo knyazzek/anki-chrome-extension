@@ -1,7 +1,7 @@
 {
   "manifest_version": 3,
   "name": "Anki automation tool",
-  "description": "DESCRIPTION",
+  "description": "An extention to speed up the process of creating flash cards in Anki through Cambridge Dictionary website.",
   "version": "1.0",
   "action": {
     "default_icon": "icon.png",
