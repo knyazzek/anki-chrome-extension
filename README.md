@@ -15,6 +15,8 @@ It adds the word itself on the left side and type of the word on the right side.
 
 > royalty - the people who belong to the family of a king and queen: noun
 
+If the definition already contains the word then it will be without word's title on the lift side.
+
 3. Copy specific example of the word.
 
 
