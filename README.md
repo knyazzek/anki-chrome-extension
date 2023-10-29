@@ -6,7 +6,7 @@ This extension helps to speed up the process of creating Anki flash cards for le
 
 The extension adds additional copy buttons to the webpage taht copy elements to the clipboard as shown on the picture below:
 
-![](images/screenshots/preview.png)
+<img src="images/screenshots/preview.png" width="500">
 
 1. Copy url of the mp3.
 2. Copy definition of the word.
@@ -22,14 +22,14 @@ It adds the word itself on the left side and type of the word on the right side.
 
 You’ll have to download the content of the repository and unzip it:
 
-![](images/screenshots/download-zip.png)
+<img src="images/screenshots/download-zip.png" width="300">
 
 Once you have your folder, go to [chrome://extensions](chrome://extensions) (or find it in your menu in more tools > extensions), then activate the developer mode on the top right of the page:
 
-![](images/screenshots/chrome-developer-mode.png)
+<img src="images/screenshots/chrome-developer-mode.png" width="400">
 
 Then to install the extension, you just have to indicate where is this folder on your computer:
 
-![](images/screenshots/upload-extension.png)
+<img src="images/screenshots/upload-extension.png" width="400">
 
 Done
