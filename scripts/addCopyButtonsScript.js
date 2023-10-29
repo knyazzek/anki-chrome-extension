@@ -32,14 +32,18 @@ Array.from(audioElements).forEach(addCopyMp3ToClipboardButton);
 
 // Add copy word's definition to clipboard
 function addCopyDefinitionToClipboardButton(definitionElement) {
+    let word = ''
     let wordDefinitionText = '';
     let wordType = '';
+
+    // Copy word
+    const wordRootElement = definitionElement.closest(".entry-body__el") || definitionElement.closest(".pr.idiom-block");
+    word = getElementsTextWithoutTags(wordRootElement.querySelector(".di-title"));
 
     // Copy word's definition
     wordDefinitionText = getElementsTextWithoutTags(definitionElement).trim();
 
     // Copy word's type
-    const wordRootElement = definitionElement.closest(".entry-body__el") || definitionElement.closest(".pr.idiom-block");
     const wordTypeElement = wordRootElement.querySelector(".pos.dpos");
 
     if (wordTypeElement) {
@@ -54,7 +58,11 @@ function addCopyDefinitionToClipboardButton(definitionElement) {
         }
     }
 
-    const clipboardText = wordDefinitionText + " " + wordType
+    let clipboardText = wordDefinitionText + " " + wordType
+    if (!wordDefinitionText.includes(word)) {
+        clipboardText = word + " - " + clipboardText
+    }
+
     addCopyButton(clipboardText, definitionElement)
 }
 
