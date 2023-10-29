@@ -6,8 +6,7 @@ function addCopyButton(textToCopy, parentElement) {
     copyButton.addEventListener("click", function() {
         // Copy text to clipboard
         navigator.clipboard.writeText(textToCopy).then(function() {
-            console.log("Text successfully copied");
-//            copyButton.innerHTML = "&#9745;";
+            console.log("Text successfully copied: " + textToCopy);
             copyButton.style.color = "#C0C0C0";
         }).catch(function(err) {
             console.log("Unable to copy text", err);
@@ -32,25 +31,22 @@ Array.from(audioElements).forEach(addCopyMp3ToClipboardButton);
 
 //Add copy word's definition to clipboard
 function addCopyDefinitionToClipboardButton(definitionElement) {
-    let definitionText = '';
-    let partOfSpeech = '';
+    let wordDefinitionText = '';
+    let wordType = '';
 
-    // Copy definition text
-    definitionText = getElementsTextWithoutTags(definitionElement)
+    // Copy word's definition
+    wordDefinitionText = getElementsTextWithoutTags(definitionElement)
 
-    // Copy part of speech
-    const wordHeaderElement = definitionElement.closest(".entry-body");
-    console.log(wordHeaderElement)
-    const partOfSpeechElement = wordHeaderElement.querySelector(".pos.dpos");
-    console.log(partOfSpeechElement)
+    // Copy word's type
+    const wordRootElement = definitionElement.closest(".entry-body__el");
+    const wordTypeElement = wordRootElement.querySelector(".pos.dpos");
 
-    if (partOfSpeechElement) {
-        partOfSpeech = partOfSpeechElement.childNodes[0].textContent
-        console.log(partOfSpeech)
+    if (wordTypeElement) {
+        wordType = wordTypeElement.childNodes[0].textContent
     }
 
-    const clipboardText = definitionText + partOfSpeech
-    addCopyButton(clipboardText, definitionElement.parentElement)
+    const clipboardText = wordDefinitionText + wordType
+    addCopyButton(clipboardText, definitionElement)
 }
 
 const definitionElements = document.getElementsByClassName("def");
