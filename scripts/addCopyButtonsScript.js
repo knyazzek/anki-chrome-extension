@@ -35,7 +35,7 @@ function addCopyDefinitionToClipboardButton(definitionElement) {
     let wordType = '';
 
     // Copy word's definition
-    wordDefinitionText = getElementsTextWithoutTags(definitionElement)
+    wordDefinitionText = getElementsTextWithoutTags(definitionElement).trim();
 
     // Copy word's type
     const wordRootElement = definitionElement.closest(".entry-body__el");
@@ -43,9 +43,17 @@ function addCopyDefinitionToClipboardButton(definitionElement) {
 
     if (wordTypeElement) {
         wordType = wordTypeElement.childNodes[0].textContent
+
+        // Some word's definitions are without colon at the end. 
+        // To unify the approach we add check and if it's not exist then add it.
+        console.log()
+
+        if (wordDefinitionText.slice(-1) != ":") {
+            wordDefinitionText += ":"
+        }
     }
 
-    const clipboardText = wordDefinitionText + wordType
+    const clipboardText = wordDefinitionText + " " + wordType
     addCopyButton(clipboardText, definitionElement)
 }
 
