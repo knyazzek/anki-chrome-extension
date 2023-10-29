@@ -1,4 +1,5 @@
-function addCopyButton(textToCopy, parentElement) {
+// Insert a copy button with "textToCopy" at the beginning of the "parentElement"
+function addCopyButton(textToCopy, element) {
     const copyButton = document.createElement("button");
     copyButton.classList.add("copyButton");
     copyButton.innerHTML = "&#10064;";
@@ -13,7 +14,7 @@ function addCopyButton(textToCopy, parentElement) {
         });
     });
 
-    parentElement.insertAdjacentElement("afterbegin", copyButton)
+    element.insertAdjacentElement("afterbegin", copyButton)
 }
 
 
@@ -38,7 +39,7 @@ function addCopyDefinitionToClipboardButton(definitionElement) {
     wordDefinitionText = getElementsTextWithoutTags(definitionElement).trim();
 
     // Copy word's type
-    const wordRootElement = definitionElement.closest(".entry-body__el");
+    const wordRootElement = definitionElement.closest(".entry-body__el") || definitionElement.closest(".pr.idiom-block");
     const wordTypeElement = wordRootElement.querySelector(".pos.dpos");
 
     if (wordTypeElement) {
