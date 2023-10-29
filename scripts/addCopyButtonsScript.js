@@ -17,7 +17,7 @@ function addCopyButton(textToCopy, parentElement) {
 }
 
 
-//Add copy mp3 to clipboard
+// Add copy mp3 to clipboard
 function addCopyMp3ToClipboardButton(audioElement) {
     const mp3Source = audioElement.getElementsByTagName("source")[0];
     const mp3Url =  "https://dictionary.cambridge.org/" + mp3Source.getAttribute("src");
@@ -29,7 +29,7 @@ const audioElements = document.getElementsByTagName("audio");
 Array.from(audioElements).forEach(addCopyMp3ToClipboardButton);
 
 
-//Add copy word's definition to clipboard
+// Add copy word's definition to clipboard
 function addCopyDefinitionToClipboardButton(definitionElement) {
     let wordDefinitionText = '';
     let wordType = '';
@@ -52,6 +52,8 @@ function addCopyDefinitionToClipboardButton(definitionElement) {
 const definitionElements = document.getElementsByClassName("def");
 Array.from(definitionElements).forEach(addCopyDefinitionToClipboardButton);
 
+
+// Add copy word's example to clipboard
 function addCopyExampleToClipboardButton(exampleElement) {
     exampleTextElement = exampleElement.getElementsByClassName("eg")[0]
     exampleText = getElementsTextWithoutTags(exampleTextElement)
